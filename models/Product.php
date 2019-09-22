@@ -52,4 +52,14 @@ class Product extends \yii\db\ActiveRecord
             'price' => 'Price',
         ];
     }
+
+    public function getCategory()
+    {
+        return $this->hasOne(Category::className(), ['id' => 'category_id'] );
+    }
+
+    public function getFeedbacks()
+    {
+        return $this->hasMany(ProductFeedback::className(), ['product_id' => 'id'] );
+    }
 }
