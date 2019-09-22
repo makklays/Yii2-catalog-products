@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = 'Product - '. $this->title;
                     if (!empty($dp->photos)) {
                         $files = explode(',', $dp->photos);
                         foreach ($files as $photo) {
-                            $str .= Html::img('/uploads/photos/'.$dp->id.'/'.$photo, ['style' => 'width:200px;']);
+                            $str .= Html::img('/uploads/photos/'.$dp->id.'/'.$photo, ['style' => 'width:200px; margin-right:10px;']);
                         }
                     }
                     return $str;

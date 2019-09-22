@@ -23,6 +23,14 @@ use yii\widgets\ActiveForm;
     </div>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+
+    <?php if(isset($model->photos) && !empty($model->photos)): ?>
+        <?php $files = explode(',', $model->photos); ?>
+        <?php foreach($files as $file): ?>
+            <?= Html::img('/uploads/photos/'.$model->id.'/'.$file, ['style' => 'width:150px; margin-right:10px;'])?>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
     <?= $form->field($model, 'photos[]')->fileInput(['accept' => 'image/*', 'multiple' => true]) ?>
     <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
 

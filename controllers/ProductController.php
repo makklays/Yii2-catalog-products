@@ -70,14 +70,15 @@ class ProductController extends Controller
                 $model->photos = '';
                 $model->save();
 
-                // add directory
-                $path = Yii::$app->basePath . '/web/uploads/photos/' . $model->id;
-                if (!file_exists($path)) {
-                    mkdir($path, 0700);
-                }
-
                 // upload file
                 if (isset($files) && !empty($files)) {
+
+                    // add directory
+                    $path = Yii::$app->basePath . '/web/uploads/photos/' . $model->id;
+                    if (!file_exists($path)) {
+                        mkdir($path, 0700);
+                    }
+
                     $arr_photo = [];
                     foreach($files as $file) {
                         if (isset($file->baseName) && !empty($file->baseName)) {
@@ -114,6 +115,7 @@ class ProductController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $prev_photos = $model->photos;
 
         // выпадающий список - названий категорий
         $arr_cats = Category::find()->all();
@@ -129,17 +131,18 @@ class ProductController extends Controller
 
             if (Yii::$app->request->isPost && $model->validate()) {
                 $files = UploadedFile::getInstances($model, 'photos');
-                $model->photos = '';
+                $model->photos = $prev_photos;
                 $model->save();
-
-                // add directory
-                $path = Yii::$app->basePath . '/web/uploads/photos/' . $model->id;
-                if (!file_exists($path)) {
-                    mkdir($path, 0700);
-                }
 
                 // upload file
                 if (isset($files) && !empty($files)) {
+
+                    // add directory
+                    $path = Yii::$app->basePath . '/web/uploads/photos/' . $model->id;
+                    if (!file_exists($path)) {
+                        mkdir($path, 0700);
+                    }
+
                     $arr_photo = [];
                     foreach($files as $file) {
                         if (isset($file->baseName) && !empty($file->baseName)) {
