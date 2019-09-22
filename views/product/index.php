@@ -4,7 +4,7 @@ use yii\widgets\DetailView;
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['category/']];
-$this->params['breadcrumbs'][] = ['label' => $model->category->title, 'url' => ['category/view/', 'id' => $model->category->id]];
+$this->params['breadcrumbs'][] = ['label' => $model->category->title, 'url' => ['category-view/'.$model->category->id.'/1']];
 $this->params['breadcrumbs'][] = 'Product - '. $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -33,9 +33,30 @@ $this->params['breadcrumbs'][] = 'Product - '. $this->title;
         'attributes' => [
             'id',
             'category_id',
+            [
+                'format' => 'raw',
+                'attribute' => 'Категория',
+                'value' => function($dp){
+                    return Html::a($dp->category->title, ['category-view/'.$dp->category->id.'/1']);
+                }
+            ],
             'title',
             'description:ntext',
-            'photos',
+            //'photos',
+            [
+                'format' => 'raw',
+                'attribute' => 'photos',
+                'value' => function($dp){
+                    $str = NULL;
+                    if (!empty($dp->photos)) {
+                        $files = explode(',', $dp->photos);
+                        foreach ($files as $photo) {
+                            $str .= Html::img('/uploads/photos/'.$dp->id.'/'.$photo, ['style' => 'width:200px;']);
+                        }
+                    }
+                    return $str;
+                }
+            ],
             'price',
         ],
     ]) ?>

@@ -1,8 +1,8 @@
 <?php
-
 namespace app\models;
 
-use Yii;
+//use Yii;
+//use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "product".
@@ -34,7 +34,8 @@ class Product extends \yii\db\ActiveRecord
             [['category_id'], 'integer'],
             [['description'], 'string'],
             [['price'], 'number'],
-            [['title', 'photos'], 'string', 'max' => 255],
+            [['photos'], 'file', 'extensions' => 'png, jpg, gif, jpeg', 'maxFiles' => 4],
+            [['title'], 'string', 'max' => 255],
         ];
     }
 
@@ -52,6 +53,51 @@ class Product extends \yii\db\ActiveRecord
             'price' => 'Price',
         ];
     }
+
+    /*public function upload()
+    {
+        if ($this->validate()) {
+            foreach ($this->photos as $file) {
+                $file->saveAs('uploads/' . $file->baseName . '.' . $file->extension);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }*/
+
+    /*public function uploadImage($prev_pic = NULL)
+    {
+        // add directory
+        $path = Yii::$app->basePath . '/web/uploads/pics/' . $this->id;
+        if (!file_exists($path)) {
+            mkdir($path, 0700);
+        }
+
+        // upload file
+        $arr_photo = [];
+        $files = UploadedFile::getInstance($this, 'photos');
+        if (isset($files) && !empty($files)) {
+            foreach($files as $file) {
+                if (isset($file->baseName) && !empty($file->baseName)) {
+                    $filename = $file->baseName . '.' . $file->extension;
+                    $file->saveAs(Yii::$app->basePath . '/web/uploads/pics/' . $this->id . '/' . $filename);
+                    //$this->photos = (string)$filename;
+                } else {
+                    //$this->photos = (string)$prev_pic;
+                }
+                $arr_photo[] = $filename;
+            }
+            $this->title = 'werwert';
+            //$this->photos = implode(',', $arr_photo);
+
+            echo '<pre>';
+            print_r($this->photo);
+            echo '</pre>';
+            exit;
+        }
+        $this->save();
+    }*/
 
     public function getCategory()
     {

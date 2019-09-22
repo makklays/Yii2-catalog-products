@@ -9,6 +9,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ProductController implements the CRUD actions for Product model.
@@ -61,8 +62,40 @@ class ProductController extends Controller
             }
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'id' => $model->id]);
+        // insert into database
+        if ($model->load(Yii::$app->request->post())) {
+
+            if (Yii::$app->request->isPost && $model->validate()) {
+                $files = UploadedFile::getInstances($model, 'photos');
+                $model->photos = '';
+                $model->save();
+
+                // add directory
+                $path = Yii::$app->basePath . '/web/uploads/photos/' . $model->id;
+                if (!file_exists($path)) {
+                    mkdir($path, 0700);
+                }
+
+                // upload file
+                if (isset($files) && !empty($files)) {
+                    $arr_photo = [];
+                    foreach($files as $file) {
+                        if (isset($file->baseName) && !empty($file->baseName)) {
+                            $filename = $file->baseName . '.' . $file->extension;
+                            $file->saveAs(Yii::$app->basePath . '/web/uploads/photos/' . $model->id . '/' . $filename);
+                        }
+                        $arr_photo[] = $filename;
+                    }
+                    // записываем название файлов через запятую
+                    $model->photos = implode(',', $arr_photo);
+                    $model->save();
+
+                    $session = Yii::$app->session;
+                    $session->addFlash('alerts', 'Вы успешно добавили нового друга.');
+                }
+            }
+
+            return $this->redirect(['product/', 'id' => $model->id]);
         }
 
         return $this->render('create', [
@@ -91,8 +124,39 @@ class ProductController extends Controller
             }
         }
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index', 'id' => $model->id]);
+        // insert into database
+        if ($model->load(Yii::$app->request->post())) {
+
+            if (Yii::$app->request->isPost && $model->validate()) {
+                $files = UploadedFile::getInstances($model, 'photos');
+                $model->photos = '';
+                $model->save();
+
+                // add directory
+                $path = Yii::$app->basePath . '/web/uploads/photos/' . $model->id;
+                if (!file_exists($path)) {
+                    mkdir($path, 0700);
+                }
+
+                // upload file
+                if (isset($files) && !empty($files)) {
+                    $arr_photo = [];
+                    foreach($files as $file) {
+                        if (isset($file->baseName) && !empty($file->baseName)) {
+                            $filename = $file->baseName . '.' . $file->extension;
+                            $file->saveAs(Yii::$app->basePath . '/web/uploads/photos/' . $model->id . '/' . $filename);
+                        }
+                        $arr_photo[] = $filename;
+                    }
+                    // записываем название файлов через запятую
+                    $model->photos = implode(',', $arr_photo);
+                    $model->save();
+
+                    $session = Yii::$app->session;
+                    $session->addFlash('alerts', 'Вы успешно добавили нового друга.');
+                }
+            }
+            return $this->redirect(['product/', 'id' => $model->id]);
         }
 
         return $this->render('update', [

@@ -62,7 +62,7 @@ class CategoryController extends Controller
      */
     public function actionView($id, $page = 1)
     {
-        $per_page = 2;
+        $per_page = 8;
 
         // offset - position in sql
         $offset = 0;

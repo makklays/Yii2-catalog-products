@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 
 <div class="product-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
     <div class="row">
         <div class="col-md-6">
@@ -23,7 +23,7 @@ use yii\widgets\ActiveForm;
     </div>
 
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
-    <?= $form->field($model, 'photos')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'photos[]')->fileInput(['accept' => 'image/*', 'multiple' => true]) ?>
     <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
