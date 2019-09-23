@@ -9,7 +9,7 @@ return [
     'Username' => 'Имя',
     'Title' => 'Название',
     'Description' => 'Описание',
-    'Category ID' => 'ID категории',
+    'Category ID' => 'Категория',
     'Photos' => 'Фотографии',
     'Price' => 'Цена',
     'Add product' => 'Добавить продукт',
