@@ -3,8 +3,8 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['category/']];
-$this->params['breadcrumbs'][] = 'Category'. ' - ' . $this->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Categories'), 'url' => ['category/']];
+$this->params['breadcrumbs'][] = Yii::t('app', 'Category'). ' - ' . $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 
@@ -16,12 +16,12 @@ $this->params['breadcrumbs'][] = 'Category'. ' - ' . $this->title;
         </div>
         <div class="col-md-6 text-right">
             <div style="margin-top:22px;">
-                <?= Html::a('Add product', ['product/create'], ['class' => 'btn btn-success']) ?>
-                <?= Html::a('Update category', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                <?= Html::a('Delete category', ['delete', 'id' => $model->id], [
+                <?= Html::a(Yii::t('app','Add product'), ['product/create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a(Yii::t('app','Update category'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a(Yii::t('app','Delete category'), ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-danger',
                     'data' => [
-                        'confirm' => 'Are you sure you want to delete this item?',
+                        'confirm' => Yii::t('app','Are you sure you want to delete this item?'),
                         'method' => 'post',
                     ],
                 ]) ?>
@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = 'Category'. ' - ' . $this->title;
                     <?php endforeach; ?>
                 </div>
             <?php else: ?>
-                <div class="alert alert-danger">Нет продуктов в этой категории</div>
+                <div class="alert alert-danger"><?=Yii::t('app', 'Not products in the category')?></div>
             <?php endif; ?>
         </div>
     </div>

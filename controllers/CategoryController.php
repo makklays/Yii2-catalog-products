@@ -1,5 +1,4 @@
 <?php
-
 namespace app\controllers;
 
 use app\models\Product;
@@ -15,6 +14,29 @@ use yii\filters\VerbFilter;
  */
 class CategoryController extends Controller
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
+                ],
+            ],
+        ];
+    }
+
+    public function init()
+    {
+        $lang = Yii::$app->request->get('lang');
+        Yii::$app->language = $lang;
+        //echo $lang;
+        //exit;
+    }
+
     /**
      * Lists all Category models.
      * @param int $page

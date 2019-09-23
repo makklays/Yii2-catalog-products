@@ -1,5 +1,4 @@
 <?php
-
 namespace app\models;
 
 use app\models\Product;
@@ -41,11 +40,14 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'description' => 'Description',
+            'title' => Yii::t('app', 'Title'),
+            'description' => Yii::t('app', 'Description'),
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getProducts()
     {
         return $this->hasMany(Product::className(), ['category_id' => 'id'] );

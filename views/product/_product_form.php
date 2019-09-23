@@ -15,7 +15,7 @@ use yii\widgets\ActiveForm;
             <?= $form->field($model, 'category_id')->dropDownList(
                 $droplist_cats,
                 [
-                    'prompt' => '-- Choose category --',
+                    'prompt' => Yii::t('app', '-- Choose category --'),
                     'multiple' => false,
                     //'selected' => 'selected'
                 ]) ?>
@@ -35,7 +35,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('app','Save'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

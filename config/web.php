@@ -49,9 +49,39 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 '/' => 'site/index',
+
                 'category/<page:\d+>' => 'category/index',
+                'category/create' => 'category/create',
+                'category/update' => 'category/update',
+                'category/delete' => 'category/delete',
+
                 'category-view/<id:\d+>/<page:\d+>' => 'category/view',
                 'product/create/<id:\d+>' => 'product/create',
+                'product/update/<id:\d+>' => 'product/update',
+                'product/delete' => 'product/delete',
+
+                'product' => 'product/index', //
+
+                'product-feedback/create/<prod_id:\d+>' => 'productfeedback/create',
+                'product-feedback/update' => 'productfeedback/update',
+                'product-feedback/delete' => 'productfeedback/delete',
+
+
+                '<lang:>/category/<page:\d+>' => 'category/index',
+                '<lang:>/category/create' => 'category/create',
+                '<lang:>/category/update' => 'category/update',
+                '<lang:>/category/delete' => 'category/delete',
+
+                '<lang:>/category-view/<id:\d+>/<page:\d+>' => 'category/view',
+                '<lang:>/product/create/<id:\d+>' => 'product/create',
+                '<lang:>/product/update/<id:\d+>' => 'product/update',
+                '<lang:>/product/delete' => 'product/delete',
+
+                '<lang:>/product' => 'product/index', //
+
+                '<lang:>/product-feedback/create/<prod_id:\d+>' => 'productfeedback/create',
+                '<lang:>/product-feedback/update' => 'productfeedback/update',
+                '<lang:>/product-feedback/delete' => 'productfeedback/delete',
             ],
         ],
 

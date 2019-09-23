@@ -1,10 +1,10 @@
 <?php
 use yii\helpers\Html;
 
-$this->title = 'Update Category: ' . $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['category/']];
-$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->title = Yii::t('app','Update category') . ': ' . $model->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Categories'), 'url' => ['category/']];
+$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['category-view/'.$model->id.'/1']];
+$this->params['breadcrumbs'][] = Yii::t('app', 'Update');
 ?>
 <div class="category-update">
 

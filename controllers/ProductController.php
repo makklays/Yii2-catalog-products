@@ -16,6 +16,14 @@ use yii\web\UploadedFile;
  */
 class ProductController extends Controller
 {
+    public function init()
+    {
+        $lang = Yii::$app->request->get('lang');
+        //echo $lang;
+        //exit;
+        Yii::$app->language = $lang;
+    }
+
     /**
      * {@inheritdoc}
      */

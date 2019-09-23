@@ -1,5 +1,4 @@
 <?php
-
 namespace app\models;
 
 use Yii;
@@ -30,12 +29,12 @@ class ProductFeedback extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['product_id', 'username', 'email'], 'required'],
+            [['product_id', 'username', 'email', 'modified_at', 'message'], 'required'],
             [['product_id'], 'integer'],
             [['message'], 'string'],
             [['modified_at'], 'safe'],
             [['username', 'email'], 'string', 'max' => 255],
-            [['email'], 'unique'],
+            //[['email'], 'unique'], - не уникален, могу писать отзывы на разные товары
         ];
     }
 
@@ -46,14 +45,17 @@ class ProductFeedback extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'product_id' => 'Product ID',
-            'username' => 'Username',
-            'email' => 'Email',
-            'message' => 'Message',
-            'modified_at' => 'Modified At',
+            'product_id' => Yii::t('app', 'Product ID'),
+            'username' => Yii::t('app', 'Username'),
+            'email' => Yii::t('app', 'Email'),
+            'message' => Yii::t('app', 'Message'),
+            'modified_at' => Yii::t('app', 'Modified At'),
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getProduct()
     {
         return $this->hasOne(Product::className(), ['id' => 'product_id'] );

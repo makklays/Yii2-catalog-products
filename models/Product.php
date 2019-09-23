@@ -1,8 +1,7 @@
 <?php
 namespace app\models;
 
-//use Yii;
-//use yii\web\UploadedFile;
+use Yii;
 
 /**
  * This is the model class for table "product".
@@ -46,11 +45,11 @@ class Product extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'category_id' => 'Category ID',
-            'title' => 'Title',
-            'description' => 'Description',
-            'photos' => 'Photos',
-            'price' => 'Price',
+            'category_id' => Yii::t('app', 'Category ID'),
+            'title' => Yii::t('app', 'Title'),
+            'description' => Yii::t('app', 'Description'),
+            'photos' => Yii::t('app', 'Photos'),
+            'price' => Yii::t('app', 'Price'),
         ];
     }
 
@@ -99,13 +98,19 @@ class Product extends \yii\db\ActiveRecord
         $this->save();
     }*/
 
+    /**
+     * {@inheritdoc}
+     */
     public function getCategory()
     {
         return $this->hasOne(Category::className(), ['id' => 'category_id'] );
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getFeedbacks()
     {
-        return $this->hasMany(ProductFeedback::className(), ['product_id' => 'id'] );
+        return $this->hasMany(ProductFeedback::className(), ['product_id' => 'id'] )->orderBy('modified_at desc');
     }
 }
