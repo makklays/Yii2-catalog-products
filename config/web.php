@@ -56,7 +56,7 @@ $config = [
                 'category/delete' => 'category/delete',
 
                 'category-view/<id:\d+>/<page:\d+>' => 'category/view',
-                'product/create/<id:\d+>' => 'product/create',
+                'product/create' => 'product/create',
                 'product/update/<id:\d+>' => 'product/update',
                 'product/delete' => 'product/delete',
 
@@ -73,7 +73,7 @@ $config = [
                 '<lang:>/category/delete' => 'category/delete',
 
                 '<lang:>/category-view/<id:\d+>/<page:\d+>' => 'category/view',
-                '<lang:>/product/create/<id:\d+>' => 'product/create',
+                '<lang:>/product/create' => 'product/create',
                 '<lang:>/product/update/<id:\d+>' => 'product/update',
                 '<lang:>/product/delete' => 'product/delete',
 

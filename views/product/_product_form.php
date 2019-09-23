@@ -32,7 +32,12 @@ use yii\widgets\ActiveForm;
     <?php endif; ?>
 
     <?= $form->field($model, 'photos[]')->fileInput(['accept' => 'image/*', 'multiple' => true]) ?>
-    <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
+
+    <div class="row">
+        <div class="col-md-3">
+            <?= $form->field($model, 'price')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('app','Save'), ['class' => 'btn btn-success']) ?>
