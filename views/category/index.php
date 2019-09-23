@@ -1,8 +1,9 @@
 <?php
+
 use yii\helpers\Html;
 use yii\grid\GridView;
 
-$this->title = 'Categories';
+$this->title = Yii::t('app', 'Categories');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="category-index">
@@ -13,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="col-md-6 text-right">
             <div style="margin-top:22px;">
-                <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a( Yii::t('app', 'Create сategory'), ['create'], ['class' => 'btn btn-success']) ?>
             </div>
         </div>
     </div>
@@ -37,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <?php endforeach; ?>
                 </div>
             <?php else: ?>
-                <div>Нет категорий</div>
+                <div><?=Yii::t('app', 'Not categories')?></div>
             <?php endif; ?>
         </div>
     </div>

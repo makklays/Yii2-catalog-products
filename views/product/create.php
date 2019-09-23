@@ -1,8 +1,8 @@
 <?php
 use yii\helpers\Html;
 
-$this->title = 'Create Product';
-$this->params['breadcrumbs'][] = ['label' => 'Categories', 'url' => ['category/']];
+$this->title = Yii::t('app','Create product');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('app','Categories'), 'url' => ['category/']];
 
 $this->params['breadcrumbs'][] = $this->title;
 ?>

@@ -39,10 +39,12 @@ AppAsset::register($this);
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             //['label' => 'Home', 'url' => ['/site/']],
-            ['label' => 'Categories', 'url' => ['/category/']],
-            //['label' => 'Contact', 'url' => ['/site/contact']],
+            ['label' => Yii::t('app','Categories'), 'url' => ['/category/']],
+            ['label' => Yii::t('app','RU'), 'url' => ['/ru/category/1']],
+            ['label' => Yii::t('app','EN'), 'url' => ['/en/category/1']],
+            //['label' => Yii::t('app','Contact'), 'url' => ['/site/contact']],
             /*Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => Yii::t('app','Login'), 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
